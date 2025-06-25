@@ -1,0 +1,108 @@
+# Configuration for creating summary plots across assays.
+
+# --------------------------------------------------------------------------------------
+# Define how to create an integrated set of line plots and heat maps that summarizes
+# antibody escape alongside other assays (eg, functional effects of mutations).
+# --------------------------------------------------------------------------------------
+
+# summarize phenotypes just showing average escape for each species's sera
+# phenotypes: &phenotypes
+#   min_times_seen: 2  # only include mutations with times_seen >= this
+#   min_frac_models: 1  # only include mutations in >= this fraction of models
+#   alphabet: [A, C, D, E, F, G, H, I, K, L, M, N, P, Q, R, S, T, V, W, Y]  # amino acids to include
+#   init_floor_escape_at_zero: true  # initially floor site escape to be >= 0?
+#   init_site_escape_stat: sum  # initially show site escape as this statistic
+#   antibody_escape:  # show effects on antibody escape, empty dict if no antibodies being shown
+#     species sera:
+#       stat: escape  # statistic from CSV to plot
+#       positive_color: "#56B4E9"  # light blue, positive heatmap color
+#       negative_color: "#E69F00"  # orange, negative heatmap color
+#       max_at_least: 2  # make heatmap max at least
+#       min_at_least: -2  # make heatmap min at least this
+#       antibody_list:  # antibodies to include and their CSVs
+#         mouse: results/processed_results/avg_of_mouse_sera.csv
+#         ferret: results/processed_results/avg_of_ferret_sera.csv
+#   other_phenotypes:
+#     entry in 293T cells:
+#       csv: results/func_effects/averages/293T_entry_func_effects.csv  # CSV w data
+#       stat: effect  # column to plot
+#       positive_color: "#009E73"  # green
+#       negative_color: "#F0E442"  # yellow
+#       max_at_least: 2
+#       min_at_least: -2
+#       init_min_value: -3  # initial min value in slider
+#       le_filters:  # only keep entries with indicated column is <= indicated value
+#         effect_std: 3 
+#     stability:
+#       csv: results/stability/averages/stability_mut_effect.csv
+#       stat: stability_median
+#       positive_color: "#0072B2"  # dark blue
+#       negative_color: "#D55E00"  # red
+#       max_at_least: 2
+#       fixed_min: 0  # heatmaps only show stability **enhancing** mutations
+#       init_min_value: -10  # initial min value in slider
+#       le_filters:  # only keep entries with indicated column is <= indicated value
+#         stability_std: 3
+#     SA26 usage increase:
+#       csv: results/processed_results/increased_SA26_usage.csv
+#       stat: increase_SA26_usage
+#       positive_color: "#7600bc"  # purple
+#       negative_color: "#F0E442"  # yellow
+#       max_at_least: 1
+#       fixed_min: 0
+#       init_min_value: 0
+#       le_filters:
+#         increase_SA26_usage_std: 2
+#   mutation_annotation_sliders:
+#     nt changes to codon:
+#       init_value: 3
+#       max_or_min: max
+#       slider_binding_range_kwargs:
+#         min: 1
+#         max: 3
+#         step: 1
+
+ALI_mucus_escape:
+  min_times_seen: 2  # only include mutations with times_seen >= this
+  min_frac_models: 1  # only include mutations in >= this fraction of models
+  alphabet: [A, C, D, E, F, G, H, I, K, L, M, N, P, Q, R, S, T, V, W, Y]  # amino acids to include
+  init_floor_escape_at_zero: false  # initially floor site escape to be >= 0?
+  init_site_escape_stat: sum  # initially show site escape as this statistic
+  no_mean_lineplot: True
+  scale_lineplot_height: 1.1
+  selectable_per_antibody_heatmap: True
+  lineplot_antibody_label_loc: top
+  antibody_escape:
+    ALI mucus:  # name each set of antibodies
+      stat: escape_median  # statistic from CSV to plot
+      positive_color: "#56B4E9"  # light blue, positive heatmap color
+      negative_color: "#E69F00"  # orange, negative heatmap color
+      max_at_least: 2  # make heatmap max at least
+      min_at_least: -2  # make heatmap min at least this
+      antibody_list:  # antibodies to include and their CSVs
+        ALI-mucus-4: results/antibody_escape/averages/H5-ALI-mucus-4_mut_effect.csv
+        ALI-mucus-22: results/antibody_escape/averages/H5-ALI-mucus-22_mut_effect.csv
+        ALI-mucus-29: results/antibody_escape/averages/H5-ALI-mucus-29_mut_effect.csv
+        ALI-mucus-30: results/antibody_escape/averages/H5-ALI-mucus-30_mut_effect.csv
+        ALI-mucus-32: results/antibody_escape/averages/H5-ALI-mucus-32_mut_effect.csv
+  other_phenotypes:
+    entry in SA26 and SA23 293T cells:
+      csv: results/func_effects/averages/SA23_SA26_low-sera_entry_func_effects.csv  # CSV w data
+      stat: effect  # column to plot
+      positive_color: "#009E73"  # green
+      negative_color: "#F0E442"  # yellow
+      max_at_least: 2
+      min_at_least: -2
+      init_min_value: -3  # initial min value in slider
+      le_filters:  # only keep entries with indicated column is <= indicated value
+        effect_std: 3 
+    SA26 usage increase:
+      csv: results/processed_results/increased_SA26_usage.csv
+      stat: increase_SA26_usage
+      positive_color: "#7600bc"  # purple
+      negative_color: "#F0E442"  # yellow
+      max_at_least: 1
+      fixed_min: 0
+      init_min_value: 0
+      le_filters:
+        increase_SA26_usage_std: 2
