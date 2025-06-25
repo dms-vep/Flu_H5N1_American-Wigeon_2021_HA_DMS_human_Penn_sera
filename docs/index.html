@@ -1,0 +1,281 @@
+<h1 id="deep-mutational-scanning-of-h5n1-influenza-haemagglutinin-using-a-barcoded-lentiviral-platform-strain-aamerican-wigeonsouth-carolinausda-000345-0012021-and-human-sera-selection">Deep mutational scanning of H5N1 influenza haemagglutinin using a barcoded lentiviral platform (strain A/American Wigeon/South Carolina/USDA-000345-001/2021) and human sera selection</h1>
+<p>Analysis by Bernadeta Dadonaite and Jesse Bloom (2025)</p>
+<p>See <a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera">https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera</a> for full code.</p>
+<div class="toc"><span class="toctitle">Contents</span><ul>
+<li><a href="#barcode-to-codon-variant-lookup-table">Barcode to codon-variant lookup table</a></li>
+<li><a href="#count-barcodes-for-variants">Count barcodes for variants</a></li>
+<li><a href="#functional-effects-of-mutations">Functional effects of mutations</a></li>
+<li><a href="#antibodyserum-escape">Antibody/serum escape</a></li>
+<li><a href="#stability">stability</a></li>
+<li><a href="#additional-files">Additional files</a></li>
+</ul>
+</div>
+<h2 id="barcode-to-codon-variant-lookup-table">Barcode to codon-variant lookup table</h2>
+<h4 id="data-files">Data files</h4>
+<ul>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/gene_sequence/codon.fasta">parental codon sequence</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/gene_sequence/protein.fasta">parental protein sequence</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/variants/codon_variants.csv">barcode to codon-variant lookup table</a></li>
+</ul>
+<h2 id="count-barcodes-for-variants">Count barcodes for variants</h2>
+<h4 id="analysis-notebooks">Analysis notebooks</h4>
+<ul>
+<li><a href="notebooks/analyze_variant_counts.html">Analysis of variant counts</a></li>
+</ul>
+<h4 id="data-files_1">Data files</h4>
+<ul>
+<li><details><summary>Barcode count CSVs (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib1-230613-VSVG-control_counts.csv">Lib1-230613-VSVG-control</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib2-230613-VSVG-control_counts.csv">Lib2-230613-VSVG-control</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib1-230613-no-antibody-control_counts.csv">Lib1-230613-no-antibody-control</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib2-230613-no-antibody-control_counts.csv">Lib2-230613-no-antibody-control</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib1-230822-pH-D10_counts.csv">Lib1-230822-pH-D10</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib1-230822-no-antibody-control_counts.csv">Lib1-230822-no-antibody-control</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib1-230822-pH-5.5_counts.csv">Lib1-230822-pH-5.5</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib2-230822-pH-D10_counts.csv">Lib2-230822-pH-D10</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib2-230822-no-antibody-control_counts.csv">Lib2-230822-no-antibody-control</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib2-230822-pH-5.5_counts.csv">Lib2-230822-pH-5.5</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib1-231002-pH-5.3_counts.csv">Lib1-231002-pH-5.3</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib1-231002-pH-5.5_counts.csv">Lib1-231002-pH-5.5</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib1-231002-pH-5.7_counts.csv">Lib1-231002-pH-5.7</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib1-231002-pH-D10_counts.csv">Lib1-231002-pH-D10</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib2-231002-pH-5.3_counts.csv">Lib2-231002-pH-5.3</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib2-231002-pH-5.5_counts.csv">Lib2-231002-pH-5.5</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib2-231002-pH-5.7_counts.csv">Lib2-231002-pH-5.7</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib2-231002-pH-D10_counts.csv">Lib2-231002-pH-D10</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib1-250625-human-A24-0002-0.3_counts.csv">Lib1-250625-human-A24-0002-0.3</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib1-250625-human-A24-0002-0.68_counts.csv">Lib1-250625-human-A24-0002-0.68</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib1-250625-human-A24-0059-0.3_counts.csv">Lib1-250625-human-A24-0059-0.3</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib1-250625-human-A24-0059-0.68_counts.csv">Lib1-250625-human-A24-0059-0.68</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib1-250625-human-A24-0065-0.26_counts.csv">Lib1-250625-human-A24-0065-0.26</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib1-250625-human-A24-0065-0.65_counts.csv">Lib1-250625-human-A24-0065-0.65</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib1-250625-human-A24-0164-0.18_counts.csv">Lib1-250625-human-A24-0164-0.18</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib1-250625-human-A24-0164-0.55_counts.csv">Lib1-250625-human-A24-0164-0.55</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib1-250625-human-A24-0210-0.28_counts.csv">Lib1-250625-human-A24-0210-0.28</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib1-250625-human-A24-0210-0.66_counts.csv">Lib1-250625-human-A24-0210-0.66</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib1-250625-no_mAb_counts.csv">Lib1-250625-no_mAb</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib2-250625-human-A24-0002-0.3_counts.csv">Lib2-250625-human-A24-0002-0.3</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib2-250625-human-A24-0002-0.68_counts.csv">Lib2-250625-human-A24-0002-0.68</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib2-250625-human-A24-0059-0.3_counts.csv">Lib2-250625-human-A24-0059-0.3</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib2-250625-human-A24-0059-0.68_counts.csv">Lib2-250625-human-A24-0059-0.68</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib2-250625-human-A24-0065-0.26_counts.csv">Lib2-250625-human-A24-0065-0.26</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib2-250625-human-A24-0065-0.65_counts.csv">Lib2-250625-human-A24-0065-0.65</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib2-250625-human-A24-0164-0.18_counts.csv">Lib2-250625-human-A24-0164-0.18</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib2-250625-human-A24-0164-0.55_counts.csv">Lib2-250625-human-A24-0164-0.55</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib2-250625-human-A24-0210-0.28_counts.csv">Lib2-250625-human-A24-0210-0.28</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib2-250625-human-A24-0210-0.66_counts.csv">Lib2-250625-human-A24-0210-0.66</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/barcode_counts/Lib2-250625-no_mAb_counts.csv">Lib2-250625-no_mAb</a></li>
+</ul></details>
+
+</li>
+</ul>
+<h2 id="functional-effects-of-mutations">Functional effects of mutations</h2>
+<h4 id="final-summary-plots">Final summary plots</h4>
+<ul>
+<li><details><summary>Interactive plots of average mutation functional effects (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="htmls/293T_entry_func_effects.html">293T_entry</a></li>
+</ul></details>
+
+</li>
+<li><details><summary>Interactive plots of average mutation functional effects from single-mutant variants only (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="htmls/293T_entry_func_effects_singlemut.html">293T_entry</a></li>
+</ul></details>
+
+</li>
+<li><details><summary>Interactive plots of average mutation latent-phenotype effects (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="htmls/293T_entry_latent_effects.html">293T_entry</a></li>
+</ul></details>
+
+</li>
+</ul>
+<h4 id="analysis-notebooks_1">Analysis notebooks</h4>
+<ul>
+<li><a href="notebooks/analyze_func_scores.html">Analysis of functional scores</a></li>
+<li><details><summary>Notebooks with per-selection global epistasis fitting (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="notebooks/func_effects_global_epistasis_Lib1-230613-293T.html">Lib1-230613-293T</a></li>
+<li><a href="notebooks/func_effects_global_epistasis_Lib2-230613-293T.html">Lib2-230613-293T</a></li>
+</ul></details>
+
+</li>
+<li><details><summary>Notebooks averaging mutation functional effects (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="notebooks/avg_func_effects_293T_entry.html">293T_entry</a></li>
+</ul></details>
+
+</li>
+</ul>
+<h4 id="data-files_2">Data files</h4>
+<ul>
+<li><details><summary>Per-variant functional score CSVs (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/func_scores/Lib1-230613-293T_func_scores.csv">Lib1-230613-293T</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/func_scores/Lib2-230613-293T_func_scores.csv">Lib2-230613-293T</a></li>
+</ul></details>
+
+</li>
+<li><details><summary>Per-selection mutation functional effect CSVs (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/func_effects/by_selection/Lib1-230613-293T_func_effects.csv">Lib1-230613-293T</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/func_effects/by_selection/Lib2-230613-293T_func_effects.csv">Lib2-230613-293T</a></li>
+</ul></details>
+
+</li>
+<li><details><summary>Average mutation functional effects (CSV files) (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/func_effects/averages/293T_entry_func_effects.csv">293T_entry</a></li>
+</ul></details>
+
+</li>
+<li><details><summary>Average mutation functional effects from single-mutant variants only (CSV files) (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/func_effects/averages/293T_entry_func_effects_singlemut.csv">293T_entry</a></li>
+</ul></details>
+
+</li>
+<li><details><summary>Average mutation latent-phenotype effects (CSV files) (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/func_effects/averages/293T_entry_func_effects.csv">293T_entry</a></li>
+</ul></details>
+
+</li>
+</ul>
+<h2 id="antibodyserum-escape">Antibody/serum escape</h2>
+<h4 id="final-summary-plots_1">Final summary plots</h4>
+<ul>
+<li><details><summary>antibody escape mutation effect plots (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="htmls/human-A24-0002_mut_effect.html">human-A24-0002</a></li>
+<li><a href="htmls/human-A24-0059_mut_effect.html">human-A24-0059</a></li>
+<li><a href="htmls/human-A24-0065_mut_effect.html">human-A24-0065</a></li>
+<li><a href="htmls/human-A24-0164_mut_effect.html">human-A24-0164</a></li>
+<li><a href="htmls/human-A24-0210_mut_effect.html">human-A24-0210</a></li>
+</ul></details>
+
+</li>
+</ul>
+<h4 id="analysis-notebooks_2">Analysis notebooks</h4>
+<ul>
+<li><details><summary>Fits of polyclonal models to individual antibody escape selections (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250625-human-A24-0002.html">Lib1-250625-human-A24-0002</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250625-human-A24-0002.html">Lib2-250625-human-A24-0002</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250625-human-A24-0059.html">Lib1-250625-human-A24-0059</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250625-human-A24-0059.html">Lib2-250625-human-A24-0059</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250625-human-A24-0065.html">Lib1-250625-human-A24-0065</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250625-human-A24-0065.html">Lib2-250625-human-A24-0065</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250625-human-A24-0164.html">Lib1-250625-human-A24-0164</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250625-human-A24-0164.html">Lib2-250625-human-A24-0164</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib1-250625-human-A24-0210.html">Lib1-250625-human-A24-0210</a></li>
+<li><a href="notebooks/fit_escape_antibody_escape_Lib2-250625-human-A24-0210.html">Lib2-250625-human-A24-0210</a></li>
+</ul></details>
+
+</li>
+<li><details><summary>Average selections for antibody escape (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="notebooks/avg_escape_antibody_escape_human-A24-0002.html">human-A24-0002</a></li>
+<li><a href="notebooks/avg_escape_antibody_escape_human-A24-0059.html">human-A24-0059</a></li>
+<li><a href="notebooks/avg_escape_antibody_escape_human-A24-0065.html">human-A24-0065</a></li>
+<li><a href="notebooks/avg_escape_antibody_escape_human-A24-0164.html">human-A24-0164</a></li>
+<li><a href="notebooks/avg_escape_antibody_escape_human-A24-0210.html">human-A24-0210</a></li>
+</ul></details>
+
+</li>
+</ul>
+<h4 id="data-files_3">Data files</h4>
+<ul>
+<li><details><summary>Probability (fraction) escape for each variant in each antibody escape selection (CSVs) (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/by_selection/Lib1-250625-human-A24-0002/Lib1-250625-human-A24-0002-0.3_prob_escape.csv">Lib1-250625-human-A24-0002 Lib1-250625-human-A24-0002-0.3</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/by_selection/Lib1-250625-human-A24-0002/Lib1-250625-human-A24-0002-0.68_prob_escape.csv">Lib1-250625-human-A24-0002 Lib1-250625-human-A24-0002-0.68</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/by_selection/Lib2-250625-human-A24-0002/Lib2-250625-human-A24-0002-0.3_prob_escape.csv">Lib2-250625-human-A24-0002 Lib2-250625-human-A24-0002-0.3</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/by_selection/Lib2-250625-human-A24-0002/Lib2-250625-human-A24-0002-0.68_prob_escape.csv">Lib2-250625-human-A24-0002 Lib2-250625-human-A24-0002-0.68</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/by_selection/Lib1-250625-human-A24-0059/Lib1-250625-human-A24-0059-0.3_prob_escape.csv">Lib1-250625-human-A24-0059 Lib1-250625-human-A24-0059-0.3</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/by_selection/Lib1-250625-human-A24-0059/Lib1-250625-human-A24-0059-0.68_prob_escape.csv">Lib1-250625-human-A24-0059 Lib1-250625-human-A24-0059-0.68</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/by_selection/Lib2-250625-human-A24-0059/Lib2-250625-human-A24-0059-0.3_prob_escape.csv">Lib2-250625-human-A24-0059 Lib2-250625-human-A24-0059-0.3</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/by_selection/Lib2-250625-human-A24-0059/Lib2-250625-human-A24-0059-0.68_prob_escape.csv">Lib2-250625-human-A24-0059 Lib2-250625-human-A24-0059-0.68</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/by_selection/Lib1-250625-human-A24-0065/Lib1-250625-human-A24-0065-0.26_prob_escape.csv">Lib1-250625-human-A24-0065 Lib1-250625-human-A24-0065-0.26</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/by_selection/Lib1-250625-human-A24-0065/Lib1-250625-human-A24-0065-0.65_prob_escape.csv">Lib1-250625-human-A24-0065 Lib1-250625-human-A24-0065-0.65</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/by_selection/Lib2-250625-human-A24-0065/Lib2-250625-human-A24-0065-0.26_prob_escape.csv">Lib2-250625-human-A24-0065 Lib2-250625-human-A24-0065-0.26</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/by_selection/Lib2-250625-human-A24-0065/Lib2-250625-human-A24-0065-0.65_prob_escape.csv">Lib2-250625-human-A24-0065 Lib2-250625-human-A24-0065-0.65</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/by_selection/Lib1-250625-human-A24-0164/Lib1-250625-human-A24-0164-0.18_prob_escape.csv">Lib1-250625-human-A24-0164 Lib1-250625-human-A24-0164-0.18</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/by_selection/Lib1-250625-human-A24-0164/Lib1-250625-human-A24-0164-0.55_prob_escape.csv">Lib1-250625-human-A24-0164 Lib1-250625-human-A24-0164-0.55</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/by_selection/Lib2-250625-human-A24-0164/Lib2-250625-human-A24-0164-0.18_prob_escape.csv">Lib2-250625-human-A24-0164 Lib2-250625-human-A24-0164-0.18</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/by_selection/Lib2-250625-human-A24-0164/Lib2-250625-human-A24-0164-0.55_prob_escape.csv">Lib2-250625-human-A24-0164 Lib2-250625-human-A24-0164-0.55</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/by_selection/Lib1-250625-human-A24-0210/Lib1-250625-human-A24-0210-0.28_prob_escape.csv">Lib1-250625-human-A24-0210 Lib1-250625-human-A24-0210-0.28</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/by_selection/Lib1-250625-human-A24-0210/Lib1-250625-human-A24-0210-0.66_prob_escape.csv">Lib1-250625-human-A24-0210 Lib1-250625-human-A24-0210-0.66</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/by_selection/Lib2-250625-human-A24-0210/Lib2-250625-human-A24-0210-0.28_prob_escape.csv">Lib2-250625-human-A24-0210 Lib2-250625-human-A24-0210-0.28</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/by_selection/Lib2-250625-human-A24-0210/Lib2-250625-human-A24-0210-0.66_prob_escape.csv">Lib2-250625-human-A24-0210 Lib2-250625-human-A24-0210-0.66</a></li>
+</ul></details>
+
+</li>
+<li><details><summary>antibody escape CSVs (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/averages/human-A24-0002_mut_effect.csv">human-A24-0002</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/averages/human-A24-0059_mut_effect.csv">human-A24-0059</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/averages/human-A24-0065_mut_effect.csv">human-A24-0065</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/averages/human-A24-0164_mut_effect.csv">human-A24-0164</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/antibody_escape/averages/human-A24-0210_mut_effect.csv">human-A24-0210</a></li>
+</ul></details>
+
+</li>
+</ul>
+<h2 id="stability">stability</h2>
+<h4 id="final-summary-plots_2">Final summary plots</h4>
+<ul>
+<li><details><summary>stability mutation effect plots (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="htmls/stability_mut_effect.html">stability</a></li>
+</ul></details>
+
+</li>
+</ul>
+<h4 id="analysis-notebooks_3">Analysis notebooks</h4>
+<ul>
+<li><details><summary>Fits of polyclonal models to individual stability selections (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="notebooks/fit_escape_stability_Lib1-230822-pH.html">Lib1-230822-pH</a></li>
+<li><a href="notebooks/fit_escape_stability_Lib2-230822-pH.html">Lib2-230822-pH</a></li>
+<li><a href="notebooks/fit_escape_stability_Lib1-231002-pH.html">Lib1-231002-pH</a></li>
+<li><a href="notebooks/fit_escape_stability_Lib2-231002-pH.html">Lib2-231002-pH</a></li>
+</ul></details>
+
+</li>
+<li><details><summary>Average selections for stability (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="notebooks/avg_escape_stability_stability.html">stability</a></li>
+</ul></details>
+
+</li>
+</ul>
+<h4 id="data-files_4">Data files</h4>
+<ul>
+<li><details><summary>Probability (fraction) escape for each variant in each stability selection (CSVs) (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/stability/by_selection/Lib1-230822-pH/Lib1-230822-pH-5.5_prob_escape.csv">Lib1-230822-pH Lib1-230822-pH-5.5</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/stability/by_selection/Lib2-230822-pH/Lib2-230822-pH-5.5_prob_escape.csv">Lib2-230822-pH Lib2-230822-pH-5.5</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/stability/by_selection/Lib1-231002-pH/Lib1-231002-pH-5.3_prob_escape.csv">Lib1-231002-pH Lib1-231002-pH-5.3</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/stability/by_selection/Lib1-231002-pH/Lib1-231002-pH-5.5_prob_escape.csv">Lib1-231002-pH Lib1-231002-pH-5.5</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/stability/by_selection/Lib1-231002-pH/Lib1-231002-pH-5.7_prob_escape.csv">Lib1-231002-pH Lib1-231002-pH-5.7</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/stability/by_selection/Lib2-231002-pH/Lib2-231002-pH-5.3_prob_escape.csv">Lib2-231002-pH Lib2-231002-pH-5.3</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/stability/by_selection/Lib2-231002-pH/Lib2-231002-pH-5.5_prob_escape.csv">Lib2-231002-pH Lib2-231002-pH-5.5</a></li>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/stability/by_selection/Lib2-231002-pH/Lib2-231002-pH-5.7_prob_escape.csv">Lib2-231002-pH Lib2-231002-pH-5.7</a></li>
+</ul></details>
+
+</li>
+<li><details><summary>stability CSVs (click triangle to expand/collapse)</summary><ul>
+
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/results/stability/averages/stability_mut_effect.csv">stability</a></li>
+</ul></details>
+
+</li>
+</ul>
+<h2 id="additional-files">Additional files</h2>
+<h4 id="ha-site-numbering">HA site numbering</h4>
+<ul>
+<li><a href="https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/blob/main/data/site_numbering_map.csv">CSV converting among different protein numbering schemes</a></li>
+</ul>
