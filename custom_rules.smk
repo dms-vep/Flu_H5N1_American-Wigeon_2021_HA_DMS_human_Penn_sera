@@ -21,18 +21,40 @@ rule nt_changes_to_codon:
         "analysis_notebooks/nt_changes_to_codon.py.ipynb"
 
 
-rule process_SA26_improvement:
-    """Improvement of entry in 2,6 cells: positive difference and positive 2,6 entry.""" 
+rule configure_dms_viz_human_sera:
+    """Configure a JSON file for `dms-viz` for the human sera"""
     input:
-        csv="results/func_effect_diffs/SA26_vs_SA23_low-sera_entry_diffs.csv",
+        phenotypes_csv="results/summaries/phenotypes.csv",
+        per_antibody_escape_csv="results/summaries/human_sera_escape_per_antibody_escape.csv",
+        site_numbering_map=config["site_numbering_map"],
+        nb="analysis_notebooks/configure_dms_viz_human_sera.ipynb",
     output:
-        csv="results/processed_results/increased_SA26_usage.csv",
+        dms_viz_json="results/dms-viz/dms-viz_human_sera.json",
+        dms_viz_sitemap="results/dms-viz/sitemap_human_sera.csv",
+        dms_viz_phenotypes="results/dms-viz/phenotypes_human_sera.csv",
+        pdb_file="results/dms-viz/pdb_file_human_sera.pdb",
+        nb="results/notebooks/configure_dms_viz_human_sera.ipynb",
+    params:
+        dms_viz_subdir=lambda _, output: os.path.dirname(output.dms_viz_json),
+        pdb_id="4kwm",
     log:
-        "results/logs/process_SA26_improvement.txt",
+        "results/logs/configure_dms_viz_human_sera.txt",
     conda:
-        os.path.join(config["pipeline_path"], "environment.yml")
-    script:
-        "scripts/process_SA26_improvement.py"
+        "envs/dms-viz.yml"
+    shell:
+        """
+        papermill {input.nb} {output.nb} \
+            -p phenotypes_csv {input.phenotypes_csv} \
+            -p per_antibody_escape_csv {input.per_antibody_escape_csv} \
+            -p site_numbering_map {input.site_numbering_map} \
+            -p dms_viz_json {output.dms_viz_json} \
+            -p dms_viz_sitemap {output.dms_viz_sitemap} \
+            -p dms_viz_phenotypes {output.dms_viz_phenotypes} \
+            -p pdb_file {output.pdb_file} \
+            -p dms_viz_subdir {params.dms_viz_subdir} \
+            -p pdb_id {params.pdb_id} \
+            &> {log}
+        """
 
 # Files (Jupyter notebooks, HTML plots, or CSVs) that you want included in
 # the HTML docs should be added to the nested dict `docs`:
@@ -40,5 +62,8 @@ docs["Additional files"] = {
     "HA site numbering": {
         "CSV converting among different protein numbering schemes":
             config["site_numbering_map"],
-    },    
+    },
 }
+
+other_target_files.append(rules.configure_dms_viz_human_sera.output.dms_viz_json)
+
