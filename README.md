@@ -1,7 +1,7 @@
 # Deep mutational scanning of H5N1 influenza haemagglutinin using a barcoded lentiviral platform (strain A/American Wigeon/South Carolina/USDA-000345-001/2021) and human sera selections
 
 This repository has the code and data.
-For rendering of key results and an easy-to-interpret summary, see the documentation of the analysis at [https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera](https://github.com/dms-vep/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera)
+For rendering of key results and an easy-to-interpret summary, see the documentation of the analysis at [http://dms-vep.org/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/](http://dms-vep.org/Flu_H5N1_American-Wigeon_2021_HA_DMS_human_Penn_sera/)
 
 ## Organization of this repo
 
