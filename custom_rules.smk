@@ -24,7 +24,7 @@ rule nt_changes_to_codon:
 rule configure_dms_viz_human_sera:
     """Configure a JSON file for `dms-viz` for the human sera"""
     input:
-        phenotypes_csv="results/summaries/phenotypes.csv",
+        phenotypes_csv="results/summaries/human_sera_escape.csv",
         per_antibody_escape_csv="results/summaries/human_sera_escape_per_antibody_escape.csv",
         site_numbering_map=config["site_numbering_map"],
         nb="analysis_notebooks/configure_dms_viz_human_sera.ipynb",
@@ -63,7 +63,8 @@ docs["Additional files"] = {
         "CSV converting among different protein numbering schemes":
             config["site_numbering_map"],
     },
+    "Protein structures": {
+        "Visualizations of DMS data on protein structure (dms-viz JSONs)":
+            rules.configure_dms_viz_human_sera.output.dms_viz_json,
+    },
 }
-
-other_target_files.append(rules.configure_dms_viz_human_sera.output.dms_viz_json)
-
